@@ -1,7 +1,7 @@
 # Choose compiler
-CC = icc
+CC = gcc
 # setenv GSL_RNG_TYPE r250 -- to set environment variable
-# Optimization flags: cc is generic, gcc and icc are for PIII
+# Optimization flags: cc is generic, icc is Intel's compiler, gcc is the standard gnu compiler
 CFLAGS_gcc = -g -Wall -DHAVE_INLINE #Usually gcc is needed for debugging
 CFLAGS_icc = -O3 -xP  -DHAVE_INLINE
 
