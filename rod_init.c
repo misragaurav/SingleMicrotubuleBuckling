@@ -1,0 +1,55 @@
+#include "rod_proto.h"
+
+void init(struct rod *rod, struct rodparams *rparams)
+{
+  struct elem   *pe;
+  struct node   *pn;
+  real rx, ry, rz;
+  int m;
+  
+  rod->terminalflag = 1;
+
+  rotmatrix_node(rod);
+  rotmatrix_elem(rod);
+
+  // Rolling fric
+  rparams->zr1 = 8e-6*rparams->zt1; 	//need critical damping here			       
+  rparams->zr2 = 8e-6*rparams->zt1;                                        
+  rparams->zr3 = 8e-6*rparams->zt1;
+
+  // Init strain
+  for (m = 0; m < rod->n_elems; m++)
+    {
+      pe = &rod->elems[m];
+      pe->s1  = 0;   
+      pe->s2  = 0;   
+      pe->s3  = 1;
+      pe->b1  = 0;   
+      pe->b2  = 0;   
+      pe->b3  = 0;
+    }
+      
+  // Initialize positions of nodes other than the first one
+  pn = &rod->nodes[0];
+  rx = pn->rx;  
+  ry = pn->ry;  
+  rz = pn->rz;
+
+  pn->px = 0.0; pn->py = 0.0; pn->pz = 0.0;  //init p and l
+  pn->l1 = 0.0; pn->l2 = 0.0; pn->l3 = 0.0;
+
+  for (m = 1; m < rod->n_nodes; m++)
+    {
+      pe = &rod->elems[m];
+      pn = &rod->nodes[m];
+
+      pn->px = 0.0; pn->py = 0.0; pn->pz = 0.0;  //init p and l
+      pn->l1 = 0.0; pn->l2 = 0.0; pn->l3 = 0.0;
+
+      rx += rparams->le*(pe->d[0][0]*pe->s1 + pe->d[1][0]*pe->s2 + pe->d[2][0]*pe->s3);
+      ry += rparams->le*(pe->d[0][1]*pe->s1 + pe->d[1][1]*pe->s2 + pe->d[2][1]*pe->s3);
+      rz += rparams->le*(pe->d[0][2]*pe->s1 + pe->d[1][2]*pe->s2 + pe->d[2][2]*pe->s3);
+
+      pn->rx = rx;  pn->ry = ry;  pn->rz = rz;
+    }
+}

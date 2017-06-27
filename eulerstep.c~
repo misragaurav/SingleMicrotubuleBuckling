@@ -1,0 +1,4 @@
+#include "rod_proto.h"
+
+void  eulerp(struct rod *rod, rparams, rparams->dt);
+void  eulerr(struct rod *rod, rparams, rparams->dt);

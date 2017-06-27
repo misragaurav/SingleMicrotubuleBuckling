@@ -1,0 +1,33 @@
+PSF 
+
+      11 !NTITLE   
+
+	20 !NATOM
+      1  MAIN 1   OXYGEN  OW1   O  0   0           0
+      2  MAIN 1   OXYGEN  OW1   O  0   0           0
+      3  MAIN 1   OXYGEN  OW1   O  0   0           0
+      4  MAIN 1   OXYGEN  OW1   O  0   0           0
+      5  MAIN 1   OXYGEN  OW1   O  0   0           0
+      6  MAIN 1   OXYGEN  OW1   O  0   0           0
+      7  MAIN 1   OXYGEN  OW1   O  0   0           0
+      8  MAIN 1   OXYGEN  OW1   O  0   0           0
+      9  MAIN 1   OXYGEN  OW1   O  0   0           0
+      10 MAIN 1   OXYGEN  OW1   O  0   0           0
+      11 MAIN 1   OXYGEN  OW1   O  0   0           0
+      12 MAIN 1   OXYGEN  OW1   O  0   0           0
+      13 MAIN 1   OXYGEN  OW1   O  0   0           0
+      14 MAIN 1   OXYGEN  OW1   O  0   0           0
+      15 MAIN 1   OXYGEN  OW1   O  0   0           0
+      16 MAIN 1   OXYGEN  OW1   O  0   0           0
+      17 MAIN 1   OXYGEN  OW1   O  0   0           0
+      18 MAIN 1   OXYGEN  OW1   O  0   0           0
+      19 MAIN 1   OXYGEN  OW1   O  0   0           0
+      20 MAIN 1   OXYGEN  OW1   O  0   0           0
+     
+           
+	19 !NBOND: bonds
+      1       2       2       3       3       4       4       5
+      5       6       6       7       7       8       8       9
+      9       10      10      11      11      12      12      13
+      13      14      14      15      15      16      16      17
+      17      18      18      19      19      20
