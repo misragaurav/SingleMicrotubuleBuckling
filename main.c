@@ -8,7 +8,7 @@ int main (int argc, char **argv)
   struct params *params;
   struct centro *centro;
   struct mt *mt;
-  struct seg *ps; 
+  struct seg *ps;
   struct rod *rod;
   struct rodparams *rparams;
 
@@ -16,17 +16,17 @@ int main (int argc, char **argv)
   int seed, n, k;
   int totalsegs;
   real dt;
-  
+
   if (argc < 7)
     {printf("\n Too few arguments to the C code, bailing out. \n"); exit(0); }
-  
+
   Nmt  	 = atoi(argv[1]);
   dt 	 = atof(argv[2]);
   ds     = atof(argv[3]);
   iter 	 = atoi(argv[4]);	  //number of iterations
   iprint = atoi(argv[5]);	  //how many iterations to save after
   seed	 = atoi(argv[6]);
-  
+
   strcpy(datadir,"data");
 
   strcat(datadir,"-");
@@ -53,13 +53,13 @@ int main (int argc, char **argv)
   // printf ("generator type: %s \nseed = %lu \n", gsl_rng_name(rng), gsl_rng_default_seed);
 
   //
-  Nmax = 40;
+  Nmax = 40; // The maximum number of microtubules that can be spawned
 
   // Memory allocation
   params  = (struct params    *) calloc(1,   sizeof(struct params   ));
   centro  = (struct centro    *) calloc(1,   sizeof(struct centro   ));
-  mt      = (struct mt        *) calloc(Nmt, sizeof(struct mt       ));  
-  rod     = (struct rod       *) calloc(Nmt, sizeof(struct rod      )); 
+  mt      = (struct mt        *) calloc(Nmt, sizeof(struct mt       ));
+  rod     = (struct rod       *) calloc(Nmt, sizeof(struct rod      ));
   rparams = (struct rodparams *) calloc(1,   sizeof(struct rodparams));
 
   initmt(params, centro, mt);
@@ -80,18 +80,18 @@ int main (int argc, char **argv)
       strcpy(animationxyz, datadir);
       strcat(animationxyz, "/a.xyz");
       file_ptr  = fopen(animationxyz, "a");
- 
-#ifdef animation_small		
-      if (t%(10*iprint) == 0)	
+
+#ifdef animation_small
+      if (t%(10*iprint) == 0)
 #else
-	if (t%(iprint) == 0)	
+	if (t%(iprint) == 0)
 #endif
 	  {
 	    totalsegs = 0;
 	    for(n=0; n<Nmt; n++)
 	      totalsegs = totalsegs + mt[n].N;
 
-	    fprintf (file_ptr,"%3i \nAtom_name \n", totalsegs);	    
+	    fprintf (file_ptr,"%3i \nAtom_name \n", totalsegs);
 
 	    totalsegs = 0;
 
@@ -108,7 +108,7 @@ int main (int argc, char **argv)
       fclose (file_ptr);
 #endif
 
-      if (t%(iprint) == 0)	
+      if (t%(iprint) == 0)
 	{
 	  char centrofile[64];
 	  strcpy(centrofile, datadir);
